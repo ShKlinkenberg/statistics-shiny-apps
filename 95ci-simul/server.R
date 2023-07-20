@@ -4,7 +4,7 @@ library(ggplot2)
 shinyServer(function(input, output, session) {
   
   #Load styling files
-  source("../plottheme/styling.R",local = TRUE)
+  source("styling.R",local = TRUE)
   
   
   alpha <- 0.95 #confidence interval size

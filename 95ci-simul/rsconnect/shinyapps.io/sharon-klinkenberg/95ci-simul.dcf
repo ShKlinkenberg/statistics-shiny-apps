@@ -1,0 +1,13 @@
+name: 95ci-simul
+title: 95ci-simul
+username:
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9478391
+bundleId: 7479379
+url: https://sharon-klinkenberg.shinyapps.io/95ci-simul/
+when: 1689869661.02524
+lastSyncTime: 1689869661.02526
+asMultiple: FALSE
+asStatic: FALSE
