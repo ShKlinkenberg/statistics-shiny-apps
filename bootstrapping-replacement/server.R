@@ -6,7 +6,7 @@ library(scales)
 # CORRECTED VERSION
 
 # Load general plot theme and colors for color brewer
-source("../plottheme/styling.R",local = TRUE)
+source("styling.R",local = TRUE)
 
 # Function that returns coordinates of dots, so that they stack nicely
 # on top of each other. 

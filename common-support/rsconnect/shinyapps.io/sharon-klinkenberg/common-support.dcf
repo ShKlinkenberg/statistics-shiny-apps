@@ -1,0 +1,12 @@
+name: common-support
+title: common-support
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9492847
+bundleId: 7485542
+url: https://sharon-klinkenberg.shinyapps.io/common-support/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

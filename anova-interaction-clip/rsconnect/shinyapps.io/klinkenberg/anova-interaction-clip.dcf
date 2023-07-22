@@ -1,0 +1,12 @@
+name: anova-interaction-clip
+title: anova-interaction-clip
+username: klinkenberg
+account: klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9492709
+bundleId: 7485460
+url: https://klinkenberg.shinyapps.io/anova-interaction-clip/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

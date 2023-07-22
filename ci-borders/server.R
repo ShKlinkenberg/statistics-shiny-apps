@@ -3,7 +3,7 @@ library(ggplot2)
 library(RColorBrewer)
 
 shinyServer(function(input, output) {
-  source("../plottheme/styling.R",local = TRUE)
+  source("styling.R",local = TRUE)
   mean = 2.8 #population mean
   sd = 0.8 #Population standard deviation
 

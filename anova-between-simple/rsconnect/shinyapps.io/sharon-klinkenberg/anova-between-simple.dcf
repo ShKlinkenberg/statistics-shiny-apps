@@ -1,0 +1,12 @@
+name: anova-between-simple
+title: anova-between-simple
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9492776
+bundleId: 7485492
+url: https://sharon-klinkenberg.shinyapps.io/anova-between-simple/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

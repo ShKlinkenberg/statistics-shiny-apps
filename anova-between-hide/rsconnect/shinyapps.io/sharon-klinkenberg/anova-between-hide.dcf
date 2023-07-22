@@ -1,0 +1,12 @@
+name: anova-between-hide
+title: anova-between-hide
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9492765
+bundleId: 7485491
+url: https://sharon-klinkenberg.shinyapps.io/anova-between-hide/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
