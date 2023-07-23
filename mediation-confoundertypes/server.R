@@ -3,7 +3,7 @@ library(shiny)
 
 shinyServer(function(input, output) {
   
-  source("../plottheme/styling.R", local = TRUE)
+  source("styling.R", local = TRUE)
   
   # DATA FOR LABELS: ONE DATA FRAME PER SCENARIO
   lab_none <- data.frame(label = c(" Pol interest ",

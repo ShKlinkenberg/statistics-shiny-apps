@@ -1,0 +1,12 @@
+name: normal-approximation
+title: normal-approximation
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9495515
+bundleId: 7487516
+url: https://sharon-klinkenberg.shinyapps.io/normal-approximation/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

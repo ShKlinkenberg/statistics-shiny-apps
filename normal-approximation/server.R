@@ -5,7 +5,7 @@ library(RColorBrewer)
 shinyServer(function(input, output) {
   
   # Define server logic required to draw a histogram
-  source("../plottheme/styling.R", local = TRUE)
+  source("styling.R", local = TRUE)
   
   ##VARIABLES
   N <- 400 #sample size

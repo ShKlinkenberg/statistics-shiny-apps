@@ -3,7 +3,7 @@ library(shiny)
 
 shinyServer(function(input, output) {
   
-  source("../plottheme/styling.R", local = TRUE)
+  source("styling.R", local = TRUE)
   
   # TEXT/LABEL ELEMENT Y POSITIONS and LABEL TEXT
   labels <- data.frame(y = c(.15,.55,.75,.95,.15),

@@ -5,7 +5,7 @@ library(RColorBrewer)
 shinyServer(function(input, output) {
   
   #Load general plot theme and colors for color brewer
-  source("../plottheme/styling.R",local = TRUE)
+  source("styling.R",local = TRUE)
   
   N <- 100 #population size
   mean <- 3.5 # population before mean

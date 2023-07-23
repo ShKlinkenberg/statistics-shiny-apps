@@ -3,7 +3,7 @@ library(ggplot2)
 library(RColorBrewer)
 
 shinyServer(function(input, output) {
-  source("../plottheme/styling.R",local = TRUE)
+  source("styling.R",local = TRUE)
   n = 30 # sample size
   mean = 2.8 #population mean
   sd = runif(n = 1, min = 2, max = 4) #Population standard deviation

@@ -1,0 +1,12 @@
+name: nonsig-1sided
+title: nonsig-1sided
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9495506
+bundleId: 7487509
+url: https://sharon-klinkenberg.shinyapps.io/nonsig-1sided/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

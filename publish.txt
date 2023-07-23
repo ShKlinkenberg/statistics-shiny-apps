@@ -22,3 +22,23 @@ continuous-moderator done
 continuous-moderator1 done
 crit-df done
 crit-values done
+dichotomous-moderator done
+estimation done
+estimation2 done
+expected-value done
+interaction-var done
+interval-level done
+interval-size done
+mean-centering-moderator done (schuifregelaar werkt alleen als het onderste vakje is aangevinkt)
+mean-centering-moderator-microlceture done (schuifregelaar werkt alleen als het onderste vakje is aangevinkt)
+mean-dependent done
+mean-independent done
+meditation-commoncause done
+meditation-confoundertypes done
+meditation-indirectcorrelation done
+meditation-inference done
+meditation-mulipleregression done
+nonsig-1sided done
+normal-approx-proportion done
+normal-approximation done
+null-ci done

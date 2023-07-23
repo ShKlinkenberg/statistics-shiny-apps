@@ -1,0 +1,12 @@
+name: dichotomous-moderator
+title: dichotomous-moderator
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9495414
+bundleId: 7487440
+url: https://sharon-klinkenberg.shinyapps.io/dichotomous-moderator/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

@@ -3,7 +3,7 @@ library(ggplot2)
 
 shinyServer(function(input, output,session) {
 
-  source("../plottheme/styling.R", local = TRUE)
+  source("styling.R", local = TRUE)
   
   mean <- 2.8 #Population mean
   sd <- 0.5 #Population sd

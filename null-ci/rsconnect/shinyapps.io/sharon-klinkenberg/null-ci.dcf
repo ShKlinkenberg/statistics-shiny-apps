@@ -1,0 +1,12 @@
+name: null-ci
+title: null-ci
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9495522
+bundleId: 7487517
+url: https://sharon-klinkenberg.shinyapps.io/null-ci/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
