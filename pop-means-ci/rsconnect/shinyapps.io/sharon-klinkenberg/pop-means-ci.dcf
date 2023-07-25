@@ -1,0 +1,13 @@
+name: pop-means-ci
+title: pop-means-ci
+username:
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9505480
+bundleId: 7494478
+url: https://sharon-klinkenberg.shinyapps.io/pop-means-ci/
+when: 1690286718.57
+lastSyncTime: 1690286718.57001
+asMultiple: FALSE
+asStatic: FALSE
