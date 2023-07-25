@@ -1,0 +1,12 @@
+name: mediation-indirectcorrelation
+title: mediation-indirectcorrelation
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9495498
+bundleId: 7487494
+url: https://sharon-klinkenberg.shinyapps.io/mediation-indirectcorrelation/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

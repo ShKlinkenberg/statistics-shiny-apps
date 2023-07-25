@@ -1,0 +1,12 @@
+name: mediation-multipleregression
+title: mediation-multipleregression
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9495503
+bundleId: 7487503
+url: https://sharon-klinkenberg.shinyapps.io/mediation-multipleregression/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

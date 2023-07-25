@@ -1,0 +1,12 @@
+name: anova-means
+title: anova-means
+username: klinkenberg
+account: klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9492718
+bundleId: 7485463
+url: https://klinkenberg.shinyapps.io/anova-means/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

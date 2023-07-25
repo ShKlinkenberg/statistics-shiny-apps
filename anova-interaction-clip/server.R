@@ -4,7 +4,7 @@ library(RColorBrewer)
 
 shinyServer(function(input, output) {
   #Load styling files for plots
-  source("../plottheme/styling.R", local = TRUE)
+  source("styling.R", local = TRUE)
   
   #Reactive data frame for plotting the means
   data <- reactive(data.frame(endorser = factor(c("Clooney","Jolie","No endorser","Clooney","Jolie","No endorser"),

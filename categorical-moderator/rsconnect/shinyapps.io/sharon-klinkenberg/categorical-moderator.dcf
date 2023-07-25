@@ -1,0 +1,12 @@
+name: categorical-moderator
+title: categorical-moderator
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9492829
+bundleId: 7485534
+url: https://sharon-klinkenberg.shinyapps.io/categorical-moderator/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

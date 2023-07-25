@@ -4,7 +4,7 @@ library(ggplot2)
 
 shinyServer(function(input, output) {
   #Load styling for plots
-  source("../plottheme/styling.R", local = TRUE)
+  source("styling.R", local = TRUE)
   # #Set constant.
   # contact_mean = 4.5
   

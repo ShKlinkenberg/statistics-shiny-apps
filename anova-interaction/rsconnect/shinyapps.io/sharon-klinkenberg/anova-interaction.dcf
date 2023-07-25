@@ -1,0 +1,12 @@
+name: anova-interaction
+title: anova-interaction
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9492780
+bundleId: 7485495
+url: https://sharon-klinkenberg.shinyapps.io/anova-interaction/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

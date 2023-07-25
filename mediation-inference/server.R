@@ -5,7 +5,7 @@ library(gridExtra)
 
 shinyServer(function(input, output, session) {
   
-  source("../plottheme/styling.R", local = TRUE)
+  source("styling.R", local = TRUE)
   #Set slider inputs to random drawn values###
   
   

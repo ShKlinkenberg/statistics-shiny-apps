@@ -1,0 +1,12 @@
+name: bootstrap-lim
+title: bootstrap-lim
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9492816
+bundleId: 7485522
+url: https://sharon-klinkenberg.shinyapps.io/bootstrap-lim/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

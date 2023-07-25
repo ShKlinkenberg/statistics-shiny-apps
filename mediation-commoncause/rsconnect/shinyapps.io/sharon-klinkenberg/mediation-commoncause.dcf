@@ -1,0 +1,12 @@
+name: mediation-commoncause
+title: mediation-commoncause
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9495481
+bundleId: 7487476
+url: https://sharon-klinkenberg.shinyapps.io/mediation-commoncause/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

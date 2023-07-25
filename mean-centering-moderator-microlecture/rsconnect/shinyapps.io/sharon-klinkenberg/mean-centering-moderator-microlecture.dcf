@@ -1,0 +1,12 @@
+name: mean-centering-moderator-microlecture
+title: mean-centering-moderator-microlecture
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9495468
+bundleId: 7487465
+url: https://sharon-klinkenberg.shinyapps.io/mean-centering-moderator-microlecture/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

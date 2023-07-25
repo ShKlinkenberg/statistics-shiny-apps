@@ -1,0 +1,12 @@
+name: anova-posthoc-hide
+title: anova-posthoc-hide
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9492806
+bundleId: 7485515
+url: https://sharon-klinkenberg.shinyapps.io/anova-posthoc-hide/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

@@ -1,0 +1,12 @@
+name: ci-borders-old
+title: ci-borders-old
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9492841
+bundleId: 7485540
+url: https://sharon-klinkenberg.shinyapps.io/ci-borders-old/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

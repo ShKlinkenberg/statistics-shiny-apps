@@ -3,7 +3,7 @@ library(shiny)
 
 shinyServer(function(input, output) {
   
-  source("../plottheme/styling.R", local = TRUE)
+  source("styling.R", local = TRUE)
   
   # TEXT/LABEL ELEMENT POSITIONS
   elpos <- data.frame(x = c(.15,.5,.5,.5,.85), y = c(.15,.55,.75,.95,.15))

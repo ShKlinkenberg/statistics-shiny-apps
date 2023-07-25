@@ -1,0 +1,12 @@
+name: bootstrapping
+title: bootstrapping
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9492819
+bundleId: 7485527
+url: https://sharon-klinkenberg.shinyapps.io/bootstrapping/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

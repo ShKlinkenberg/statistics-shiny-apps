@@ -1,0 +1,12 @@
+name: mean-centering-moderator
+title: mean-centering-moderator
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9495462
+bundleId: 7487462
+url: https://sharon-klinkenberg.shinyapps.io/mean-centering-moderator/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

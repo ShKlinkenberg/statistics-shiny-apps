@@ -3,7 +3,7 @@ library(ggplot2)
 
 shinyServer(function(input, output) {
 # Source styling files    
-source("../plottheme/styling.R", local = TRUE)
+source("styling.R", local = TRUE)
 
 #read-in csv file 
 readers_org <- read.csv(file = "readers.csv")

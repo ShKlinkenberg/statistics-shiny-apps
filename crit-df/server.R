@@ -2,7 +2,7 @@ library(ggplot2)
 library(shiny)
 
 shinyServer(function(input, output) {
-   source("../plottheme/styling.R", local = TRUE)
+   source("styling.R", local = TRUE)
   
   mean <- 5.5 #mean of t dist
   sd <- 1 #sd of variable

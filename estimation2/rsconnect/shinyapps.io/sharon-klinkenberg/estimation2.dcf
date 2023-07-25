@@ -1,0 +1,12 @@
+name: estimation2
+title: estimation2
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9495437
+bundleId: 7487446
+url: https://sharon-klinkenberg.shinyapps.io/estimation2/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

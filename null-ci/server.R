@@ -2,7 +2,7 @@ library(ggplot2)
 library(shiny)
 
 shinyServer(function(input, output) {
-  source("../plottheme/styling.R", local = TRUE)
+  source("styling.R", local = TRUE)
   
   se <- 0.7  #sd of sampling distribution
   df <- 30 #df of t distribution

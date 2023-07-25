@@ -4,7 +4,7 @@ library(ggplot2)
 shinyServer(function(input, output) {
    
   #Load styling file
-  source("../plottheme/styling.R", local = TRUE)
+  source("styling.R", local = TRUE)
   
   #Group size (3 groups, each of this size)
   n = 30

@@ -1,0 +1,12 @@
+name: continuous-interaction-visualization
+title: continuous-interaction-visualization
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9492848
+bundleId: 7485546
+url: https://sharon-klinkenberg.shinyapps.io/continuous-interaction-visualization/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

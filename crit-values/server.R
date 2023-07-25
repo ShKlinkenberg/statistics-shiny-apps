@@ -3,7 +3,7 @@ library(ggplot2)
 library(RColorBrewer)
 
 shinyServer(function(input, output) {
-  source("../plottheme/styling.R",local = TRUE)
+  source("styling.R",local = TRUE)
   cilevel = .95 # confidence level
   n = 25 #sample size (just for reporting)
   mean = 2.8 #population mean
