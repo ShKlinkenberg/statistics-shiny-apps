@@ -5,7 +5,7 @@ library(scales)
 library(RColorBrewer)
 
 #Load general plot theme and colors for color brewer
-source("../plottheme/styling.R",local = TRUE)
+source("styling.R",local = TRUE)
 
 #Group size (2 groups, each of this size)
 n = 12

@@ -1,0 +1,12 @@
+name: p-values
+title: p-values
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9510993
+bundleId: 7498366
+url: https://sharon-klinkenberg.shinyapps.io/p-values/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

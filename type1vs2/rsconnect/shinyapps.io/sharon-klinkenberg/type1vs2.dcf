@@ -1,0 +1,12 @@
+name: type1vs2
+title: type1vs2
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9511184
+bundleId:
+url: https://sharon-klinkenberg.shinyapps.io/type1vs2/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

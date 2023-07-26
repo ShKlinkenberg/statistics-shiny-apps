@@ -4,7 +4,7 @@ library(ggplot2)
 
 shinyServer(function(input, output) {
 
-  source("../plottheme/styling.R", local = TRUE)
+  source("styling.R", local = TRUE)
   
   #Function for scaling and shifting the t-distribution
   dtshift <- function(x,mean,sd,df) dt(x = (x - mean)/sd, df = df)

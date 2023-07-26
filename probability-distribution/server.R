@@ -4,6 +4,8 @@ library(RColorBrewer)
 
 
 shinyServer(function(input, output) {
+  #Load styling file
+  source("styling.R", local = TRUE)
   
   #Load standard colors
   brewercolors <- brewer.pal(5, name =  "Spectral")

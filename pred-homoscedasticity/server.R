@@ -4,7 +4,7 @@ library(dplyr)
   
 shinyServer(function(input, output) {
     #Load styling file
-    source("../plottheme/styling.R", local = TRUE)
+    source("styling.R", local = TRUE)
     
     n <- 160 #Number of observations
     x <- seq(from = 0, to = 10, length.out = n)

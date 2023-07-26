@@ -1,0 +1,12 @@
+name: sign-left
+title: sign-left
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9511130
+bundleId: 7498469
+url: https://sharon-klinkenberg.shinyapps.io/sign-left/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

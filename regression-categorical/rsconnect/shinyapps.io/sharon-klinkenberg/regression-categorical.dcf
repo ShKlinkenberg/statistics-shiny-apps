@@ -1,0 +1,12 @@
+name: regression-categorical
+title: regression-categorical
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9511044
+bundleId: 7498405
+url: https://sharon-klinkenberg.shinyapps.io/regression-categorical/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

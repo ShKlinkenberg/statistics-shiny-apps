@@ -5,6 +5,7 @@ library(ggplot2)
 source("styling.R",local = TRUE)
 
 shinyServer(function(input, output) {
+  
     #Handy candy variables
     candy <- list(
     colornames = c("Red", "Orange", "Yellow", "Green", "Blue"),

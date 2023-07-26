@@ -1,0 +1,12 @@
+name: nullsampling
+title: nullsampling
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9510985
+bundleId: 7498359
+url: https://sharon-klinkenberg.shinyapps.io/nullsampling/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

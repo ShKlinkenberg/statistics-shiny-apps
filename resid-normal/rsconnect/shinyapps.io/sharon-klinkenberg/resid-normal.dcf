@@ -1,0 +1,12 @@
+name: resid-normal
+title: resid-normal
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9511077
+bundleId: 7498424
+url: https://sharon-klinkenberg.shinyapps.io/resid-normal/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

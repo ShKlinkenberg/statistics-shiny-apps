@@ -5,9 +5,7 @@ account: sharon-klinkenberg
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9483093
-bundleId: 7478245
+bundleId: 7498400
 url: https://sharon-klinkenberg.shinyapps.io/random-variable/
-when: 1689847560.91422
-lastSyncTime: 1689847560.91424
 asMultiple: FALSE
 asStatic: FALSE

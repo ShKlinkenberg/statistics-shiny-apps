@@ -5,7 +5,7 @@ library(ggplot2)
 shinyServer(function(input, output) {
   
   #Load styling for plots
-  source("../plottheme/styling.R", local = TRUE)
+  source("styling.R", local = TRUE)
   
   #CREATE PREDICTOR
   n <- 150 #Decreased sample size for more nuanced p values

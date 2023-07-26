@@ -5,7 +5,7 @@ library(RColorBrewer)
 shinyServer(function(input, output) {
   
   #Source styling file for plots
-  source("../plottheme/styling.R", local = TRUE)
+  source("styling.R", local = TRUE)
 
   mean <- 0 #Hypothesized population mean difference
   sd <- 0.6 #Population SD 

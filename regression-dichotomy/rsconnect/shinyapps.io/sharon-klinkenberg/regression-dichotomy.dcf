@@ -1,0 +1,12 @@
+name: regression-dichotomy
+title: regression-dichotomy
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9511062
+bundleId: 7498414
+url: https://sharon-klinkenberg.shinyapps.io/regression-dichotomy/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

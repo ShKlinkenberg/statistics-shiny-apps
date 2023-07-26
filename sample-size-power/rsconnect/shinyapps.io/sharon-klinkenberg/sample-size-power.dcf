@@ -1,0 +1,12 @@
+name: sample-size-power
+title: sample-size-power
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9511091
+bundleId: 7498433
+url: https://sharon-klinkenberg.shinyapps.io/sample-size-power/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

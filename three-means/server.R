@@ -1,7 +1,7 @@
 library(ggplot2)
 library(shiny)
 
-source("../plottheme/styling.R",local = TRUE)
+source("styling.R",local = TRUE)
 
 shinyServer(function(input, output) {
   n <- 10   #Sample size

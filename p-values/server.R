@@ -6,7 +6,7 @@ library(RColorBrewer)
 shinyServer(function(input, output) {
    
   #load standard colors
-  source("../plottheme/styling.R",local = TRUE)
+  source("styling.R",local = TRUE)
   #setting
   m = 2.8
   

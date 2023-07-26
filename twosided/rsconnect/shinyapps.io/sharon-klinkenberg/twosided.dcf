@@ -1,0 +1,12 @@
+name: twosided
+title: twosided
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9511178
+bundleId: 7498505
+url: https://sharon-klinkenberg.shinyapps.io/twosided/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

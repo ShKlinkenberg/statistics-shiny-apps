@@ -1,0 +1,12 @@
+name: sample-size-unstand
+title: sample-size-unstand
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9511099
+bundleId: 7498440
+url: https://sharon-klinkenberg.shinyapps.io/sample-size-unstand/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

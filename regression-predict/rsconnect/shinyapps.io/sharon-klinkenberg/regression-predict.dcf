@@ -1,0 +1,12 @@
+name: regression-predict
+title: regression-predict
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9511067
+bundleId: 7498420
+url: https://sharon-klinkenberg.shinyapps.io/regression-predict/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

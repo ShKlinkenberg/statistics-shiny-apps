@@ -4,7 +4,7 @@ library(RColorBrewer)
 
 shinyServer(function(input, output) {
   #Load styling files for plots
-  source("../plottheme/styling.R", local = TRUE)
+  source("styling.R", local = TRUE)
 
   n.sim <- 1000
   

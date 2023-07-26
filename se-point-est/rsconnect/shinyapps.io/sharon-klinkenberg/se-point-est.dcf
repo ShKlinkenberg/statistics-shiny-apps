@@ -1,0 +1,12 @@
+name: se-point-est
+title: se-point-est
+username: sharon-klinkenberg
+account: sharon-klinkenberg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9511116
+bundleId: 7498461
+url: https://sharon-klinkenberg.shinyapps.io/se-point-est/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
