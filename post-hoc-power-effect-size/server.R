@@ -94,6 +94,33 @@ shinyServer(function(input, output) {
       stat_function(fun = dtshift,
                     args = list(mean = mean, sd = se, df = df),
                     n = 1000) +
+      #Alternative ha T distribution function
+      stat_function(fun = dtshift,
+                    args = list(mean = reactive$sampmean, sd = se, df = df),
+                    n = 1000) +
+      #Sample average vline
+      geom_segment(aes(x = mean, xend = reactive$sampmean,
+                       y = .2, yend = .2),
+                   colour = brewercolors["Blue"]) +
+      # Observed effect size hline
+      geom_segment(aes(x = reactive$sampmean, xend = reactive$sampmean,
+                       y = under, yend = dtshift(reactive$sampmean, reactive$sampmean, se, df)),
+                   colour = brewercolors["Blue"]) +
+      # Observed effect size
+      geom_text(label = "Observed effect size",
+                aes(x = mean + mean(reactive$sampmean - mean) / 2,
+                    y = 0.22),
+                hjust = .5,
+                size = 3) +
+      # Post Hoc Power Right
+      # stat_function(fun = dtshift,
+      #               xlim = c(right5,10),
+      #               geom = "area",
+      #               colour = "black",
+      #               fill = brewercolors["Blue"],
+      #               alpha = 0.3,
+      #               args = list(mean = mean, sd = se, df = df),
+      #               n = 1000) +
       #2.5% label right
       geom_text(label = "2.5%",
                 aes(x = right * 1.02 ,
@@ -153,10 +180,10 @@ shinyServer(function(input, output) {
       geom_point(data = react$sample[react$sample$x >= 1 & react$sample$x <= 10,], aes(x = x, y = y), 
                  colour = brewercolors["Red"]) +
       #Sample average vline
-      geom_segment(aes(x = reactive$sampmean, xend = reactive$sampmean, 
-                       y = under, yend = dtshift(reactive$sampmean, mean, se, df)), 
+      geom_segment(aes(x = reactive$sampmean, xend = reactive$sampmean,
+                       y = under, yend = dtshift(reactive$sampmean, mean, se, df)),
                    colour = brewercolors["Red"]) +
-      #Sample average p value (left)
+      # Sample average p value (left)
       geom_text(label = paste0(format(round(pt((reactive$sampmean - mean)/se, df, 
                                  lower.tail = TRUE), 
                               digits = 3), nsmall = 3)),
