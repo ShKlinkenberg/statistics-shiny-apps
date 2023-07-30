@@ -88,6 +88,15 @@ shinyServer(function(input, output) {
                                   sd   = se, 
                                   df   = df),
                     n      = 1000) +
+      # Legend for post hoc power
+      # geom_rect(aes(xmin = 4, 
+      #               xmax = 5, 
+      #               ymin = 0, 
+      #               ymax = .1, 
+      #               fill = brewercolors["Green"] ), 
+      #           color = "black", 
+      #           alpha = 0.3) +
+
       #Right area 0 curve"5%
       stat_function(fun    = dtshift,
                     xlim   = c(right5,10),
