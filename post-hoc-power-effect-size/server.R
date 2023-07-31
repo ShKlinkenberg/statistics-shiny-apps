@@ -21,6 +21,9 @@ shinyServer(function(input, output) {
   #Function for scaling and shifting the t-distribution
   dtshift <- function(x,mean,sd,df) dt(x = (x - mean)/sd, df = df)
   
+  #Function for scaling and shifting the t-distribution and calculation power
+  ptshift <- function(x,mean,sd,df) round(pt(q = (x - mean)/sd, df = df, lower.tail = FALSE),2)
+  
   #Function for stratified randomization of sample mean.
   newsample <- function() {
     stratum <- round(runif(1, 0.51, 5.49))
@@ -97,7 +100,8 @@ shinyServer(function(input, output) {
       #           color = "black", 
       #           alpha = 0.3) +
       # scale_fill_manual(values = brewercolors["Green"] ) +
-      scale_fill_discrete(labels = "Post Hoc Power" ) +
+      scale_fill_discrete(labels = paste0("Post Hoc Power ", 
+                                          ptshift(right5, reactive$sampmean, se, df) ) ) +
       #Right area 0 curve"5%
       stat_function(fun    = dtshift,
                     xlim   = c(right5,10),
@@ -107,7 +111,7 @@ shinyServer(function(input, output) {
                     alpha  = 1,
                     args   = list(mean = mean, sd = se, df = df),
                     n      = 1000) +
-      #5% label right
+      # 5% label right
       geom_text(label = "5%",
                 aes(x = right5 * 1.02 ,
                     y =  dtshift(right5, mean, se, df) + 0.01),
@@ -182,7 +186,7 @@ shinyServer(function(input, output) {
       theme(panel.border      = element_rect(colour = NA), 
             axis.line.y       = element_blank(),
             plot.margin       = margin(10,0,10,0),
-            legend.position   = c(0.1, .9),
+            legend.position   = c(0.18, .9),
             legend.title      = element_blank(),
             legend.background = element_blank())
   })
