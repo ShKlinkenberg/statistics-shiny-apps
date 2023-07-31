@@ -82,7 +82,7 @@ shinyServer(function(input, output) {
                     xlim   = c(right5,10),
                     geom   = "area",
                     colour = "black",
-                    fill   = brewercolors["Green"],
+                    aes(  fill   = brewercolors["Green"] ),
                     alpha  = 0.3,
                     args   = list(mean = reactive$sampmean, 
                                   sd   = se, 
@@ -96,7 +96,8 @@ shinyServer(function(input, output) {
       #               fill = brewercolors["Green"] ), 
       #           color = "black", 
       #           alpha = 0.3) +
-
+      # scale_fill_manual(values = brewercolors["Green"] ) +
+      scale_fill_discrete(labels = "Post Hoc Power" ) +
       #Right area 0 curve"5%
       stat_function(fun    = dtshift,
                     xlim   = c(right5,10),
@@ -178,8 +179,11 @@ shinyServer(function(input, output) {
                          expand = c(0, 0)) + 
       #Theme                                       
       theme_general() +
-      theme(panel.border = element_rect(colour = NA), 
-            axis.line.y  = element_blank(),
-            plot.margin  = margin(10,0,10,0))
+      theme(panel.border      = element_rect(colour = NA), 
+            axis.line.y       = element_blank(),
+            plot.margin       = margin(10,0,10,0),
+            legend.position   = c(0.1, .9),
+            legend.title      = element_blank(),
+            legend.background = element_blank())
   })
 })
