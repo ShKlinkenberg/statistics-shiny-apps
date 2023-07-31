@@ -22,7 +22,7 @@ shinyServer(function(input, output) {
   dtshift <- function(x,mean,sd,df) dt(x = (x - mean)/sd, df = df)
   
   #Function for scaling and shifting the t-distribution and calculation power
-  ptshift <- function(x,mean,sd,df) round(pt(q = (x - mean)/sd, df = df, lower.tail = FALSE),2)
+  ptshift <- function(x,mean,sd,df) round(pt(q = (x - mean)/sd, df = df, lower.tail = FALSE),2)*100
   
   #Function for stratified randomization of sample mean.
   newsample <- function() {
@@ -101,7 +101,8 @@ shinyServer(function(input, output) {
       #           alpha = 0.3) +
       # scale_fill_manual(values = brewercolors["Green"] ) +
       scale_fill_discrete(labels = paste0("Post Hoc Power ", 
-                                          ptshift(right5, reactive$sampmean, se, df) ) ) +
+                                          ptshift(right5, reactive$sampmean, se, df),
+                                          "%") ) +
       #Right area 0 curve"5%
       stat_function(fun    = dtshift,
                     xlim   = c(right5,10),
