@@ -7,9 +7,8 @@ ui <- fluidPage(
       div(style = "width: 50%;",
           sidebarLayout(
             sidebarPanel(
-              numericInput("MC_score_def", "Enter MC Score Def:", value = 7, min = 0, max = 10),
-              numericInput("Open_score_def", "Enter Open Score Def:", value = 11, min = 0, max = 15),
-              numericInput("MC_gues", "Enter MC Guess:", value = 2.38, min = 0, max = 10),
+              numericInput("MC_score_def", "Enter MC Score:", value = NA, min = 0, max = 7),
+              numericInput("Open_score_def", "Enter Open Score:", value = NA, min = 0, max = 15),
               actionButton("calculate", "Calculate")
             ),
             mainPanel()
