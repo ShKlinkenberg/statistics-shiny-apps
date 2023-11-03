@@ -30,9 +30,9 @@ server <- function(input, output) {
                            "\\right] \\div",
                            MC_max+Open_max,
                            " \\times 10 = ",
-                           round(tentamen.cijfer, 2),
+                           round(tentamen.cijfer, 3),
                            "$$")),
-        "<h3>Exam grade:", round(tentamen.cijfer, 2), "</h3>",
+        "<h3>Exam grade:", round(tentamen.cijfer, 3), "</h3>",
         "</div>")
       )
     })
