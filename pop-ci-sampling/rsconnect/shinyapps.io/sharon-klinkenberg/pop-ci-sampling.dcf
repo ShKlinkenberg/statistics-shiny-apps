@@ -1,11 +1,12 @@
 name: pop-ci-sampling
 title: pop-ci-sampling
-username:
+username: sharon-klinkenberg
 account: sharon-klinkenberg
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
-appId:
-bundleId:
-url:
+appId: 12101879
+bundleId: 8683543
+url: https://sharon-klinkenberg.shinyapps.io/pop-ci-sampling/
+version: 1
 asMultiple: FALSE
 asStatic: FALSE
