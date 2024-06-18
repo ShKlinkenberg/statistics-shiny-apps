@@ -38,6 +38,16 @@ shinyServer(function(input, output) {
     left <- mean - se * tc
     right <- mean + se * tc
     
+    #Calculating the left threshold for p value
+    leftp <- ifelse(mean > reactive$sampmean,
+                    reactive$sampmean,
+                    mean + (mean - reactive$sampmean)
+    )
+    rightp <- ifelse(mean <= reactive$sampmean,
+                     reactive$sampmean,
+                     mean + (mean - reactive$sampmean)
+    )
+    
     #PLOT#
     ggplot(data.frame(x = c(0,8)), aes(x = x)) + 
       #Left area under curve: 2.5%
@@ -102,6 +112,32 @@ shinyServer(function(input, output) {
                        y = under, yend = dtshift(reactive$sampmean, mean, se, df)), 
                    colour = brewercolors["Red"],
                    linetype = "dashed") +
+     
+      #Left area under curve according to the p value
+      stat_function(fun = dtshift,
+                    xlim = c(1,leftp),
+                    geom = "area",
+                    fill = brewercolors["Red"],
+                    colour = brewercolors["Red"],
+                    alpha = ifelse(mean > reactive$sampmean,
+                                   0.3,
+                                   0.1
+                    ),
+                    args = list(mean = mean, sd = se, df = df),
+                    n = 1000) +
+      #Right area under curve according to the p value
+      stat_function(fun = dtshift,
+                    xlim = c(rightp, 10),
+                    geom = "area",
+                    fill = brewercolors["Red"],
+                    colour = brewercolors["Red"],
+                    alpha = ifelse(mean > reactive$sampmean,
+                                   0.1,
+                                   0.3
+                    ),
+                    args = list(mean = mean, sd = se, df = df),
+                    n = 1000) +
+      
       #Sample average p value (one-sided)
       geom_text(label = paste0(format(round(pt((reactive$sampmean - mean)/se, df, 
                                                lower.tail = (mean > reactive$sampmean)), 
