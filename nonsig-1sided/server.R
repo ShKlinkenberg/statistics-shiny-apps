@@ -65,14 +65,14 @@ shinyServer(function(input, output) {
                     args = list(mean = mean, sd = se, df = df),
                     n = 1000) +
       #Left area 0 curve: 5%
-      stat_function(fun = dtshift,
-                    xlim = c(1,left5),
-                    geom = "area",
-                    fill = brewercolors["Blue"],
-                    alpha = 0.3,
-                    colour = "black",
-                    args = list(mean = mean, sd = se, df = df),
-                    n = 1000) +
+      # stat_function(fun = dtshift,
+      #               xlim = c(1,left5),
+      #               geom = "area",
+      #               fill = brewercolors["Blue"],
+      #               alpha = 0.3,
+      #               colour = "black",
+      #               args = list(mean = mean, sd = se, df = df),
+      #               n = 1000) +
       #Right area 0 curve"2.5%
       stat_function(fun = dtshift,
                     xlim = c(right,10),
@@ -114,18 +114,18 @@ shinyServer(function(input, output) {
                 hjust = 1,
                 size = 5) +
       #5% label left
-      geom_text(label = "5%",
-                aes(x = left5 * 0.98 ,
-                    y =  dtshift(left5, mean, se, df) + 0.01),
-                colour = brewercolors["Blue"],
-                hjust = 1,
-                size = 5) +
+      # geom_text(label = "5%",
+      #           aes(x = left5 * 0.98 ,
+      #               y =  dtshift(left5, mean, se, df) + 0.01),
+      #           colour = brewercolors["Blue"],
+      #           hjust = 1,
+      #           size = 5) +
       #critical value label left
-      geom_text(label = format(round(left, 1),nsmall = 1),
-                aes(x = left,
-                    y =  -0.02),
-                hjust = 0.5,
-                size = 3) +
+      # geom_text(label = format(round(left, 1),nsmall = 1),
+      #           aes(x = left,
+      #               y =  -0.02),
+      #           hjust = 0.5,
+      #           size = 3) +
       #critical value label right
       geom_text(label = format(round(right, 1),nsmall = 1),
                 aes(x = right,
@@ -133,11 +133,11 @@ shinyServer(function(input, output) {
                 hjust = 0.5,
                 size = 3) +
       #critical value 5% label left
-      geom_text(label = format(round(left5, 1),nsmall = 1),
-                aes(x = left5,
-                    y =  -0.02),
-                hjust = 0.5,
-                size = 3) +
+      # geom_text(label = format(round(left5, 1),nsmall = 1),
+      #           aes(x = left5,
+      #               y =  -0.02),
+      #           hjust = 0.5,
+      #           size = 3) +
       #critical value 5% label right
       geom_text(label = format(round(right5, 1),nsmall = 1),
                 aes(x = right5,
