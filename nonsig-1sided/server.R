@@ -121,11 +121,11 @@ shinyServer(function(input, output) {
       #           hjust = 1,
       #           size = 5) +
       #critical value label left
-      # geom_text(label = format(round(left, 1),nsmall = 1),
-      #           aes(x = left,
-      #               y =  -0.02),
-      #           hjust = 0.5,
-      #           size = 3) +
+      geom_text(label = format(round(left, 1),nsmall = 1),
+                aes(x = left,
+                    y =  -0.02),
+                hjust = 0.5,
+                size = 3) +
       #critical value label right
       geom_text(label = format(round(right, 1),nsmall = 1),
                 aes(x = right,
