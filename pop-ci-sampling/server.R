@@ -55,7 +55,7 @@ shinyServer(function(input, output) {
                   aes(color = "Theoretical sampling distribution of sample mean"), size = 1) +
     #make the distribution green color
     scale_color_manual(values = c("Theoretical sampling distribution of sample mean" = "green")) + 
-    theme_minimal() + 
+    theme_general() + 
     theme(
       panel.grid.major = element_blank(),  # Remove major grid lines
       panel.grid.minor = element_blank(),  # Remove minor grid lines
@@ -85,28 +85,40 @@ shinyServer(function(input, output) {
       geom_vline(aes(xintercept = mu), color = "blue", linetype = "dashed", size = 1) +
       xlim(1, 5) + 
       labs(title = "95% Confidence Interval from each data collection", x = "Population mean", y = "Times of data collection") + 
-      theme_minimal() +
+      theme_general() +
       theme(legend.position = "none",
             panel.grid.major = element_blank(),  # Remove major grid lines
             panel.grid.minor = element_blank())  # Remove minor grid lines)
+  }#, 
+  #   height = function() {
+  #   100 + input$num_simulations * 5  # Adjust the height based on the number of simulations
+  # }
+  
+  )
+  
+  output$dynamicCiPlot <- renderUI({
+    div(
+      class = "no-space",
+      plotOutput("ciPlot", width = 400, height = 100 + input$num_simulations * 5)
+    )
   })
   
-  summary_stats <- reactive({
-    data <- sim_data()  # This uses the existing sim_data reactive from your setup
-    total_catches <- sum(data$InsideCI)
-    total_sims <- nrow(data)
-    percentage_catches <- (total_catches / total_sims) * 100
-    
-    list(total_catches = total_catches, total_sims = total_sims, percentage_catches = percentage_catches)
-  })
+  # summary_stats <- reactive({
+  #   data <- sim_data()  # This uses the existing sim_data reactive from your setup
+  #   total_catches <- sum(data$InsideCI)
+  #   total_sims <- nrow(data)
+  #   percentage_catches <- (total_catches / total_sims) * 100
+  #   
+  #   list(total_catches = total_catches, total_sims = total_sims, percentage_catches = percentage_catches)
+  # })
   
   # Output for summary statistics
-  output$summaryStats <- renderText({
-    stats <- summary_stats()
-    paste("Number of 95% CIs that catch the population mean:", stats$total_catches,
-          "\nNumber of times of data collection:", stats$total_sims,
-          "\nPercentage of 95% CIs that catch the population mean:", sprintf("%.2f%%", stats$percentage_catches))
-  })
+  # output$summaryStats <- renderText({
+  #   stats <- summary_stats()
+  #   paste("Number of 95% CIs that catch the population mean:", stats$total_catches,
+  #         "\nNumber of times of data collection:", stats$total_sims,
+  #         "\nPercentage of 95% CIs that catch the population mean:", sprintf("%.2f%%", stats$percentage_catches))
+  # })
   
   # Output the population distribution plot
   output$popDistPlot <- renderPlot({
@@ -121,7 +133,7 @@ shinyServer(function(input, output) {
       labs(title = "Population distribution", x = "Value", y = "Density") +
       xlim(1, 5) + 
       ylim(0,0.5) + 
-      theme_minimal() + 
+      theme_general() + 
       theme(legend.position = "none",
             panel.grid.major = element_blank(),  # Remove major grid lines
             panel.grid.minor = element_blank())
@@ -129,51 +141,51 @@ shinyServer(function(input, output) {
   
   
   # Output for specific simulation descriptions using existing sim_data
-  output$simulationDetails <- renderText({
-    data <- sim_data()  # Use the existing sim_data reactive
-    num_sim <- nrow(data)  # Total number of simulations
-    
-    # Manually fetch data for first, second, and last simulation
-    first_sim <- data[1, ]
-    second_sim <- data[2, ]
-    last_sim <- data[num_sim, ]
-    
-    # Generate random samples for descriptive text
-    mu <- 3
-    first_samples <- sample(rnorm(input$sample_size, mean = mu, sd = 1), 3)
-    second_samples <- sample(rnorm(input$sample_size, mean = mu, sd = 1), 3)
-    last_samples <- sample(rnorm(input$sample_size, mean = mu, sd = 1), 3)
-    
-    # Create descriptions manually
-    first_description <- sprintf(
-      "1st data collection: (%.2f, %.2f, %.2f, ...), we can calculate M = %.2f; 95%%CI = [%.2f, %.2f]",
-      first_samples[1], first_samples[2], first_samples[3], first_sim$Mean, first_sim$LowerCI, first_sim$UpperCI
-    )
-    second_description <- sprintf(
-      "2nd data collection: (%.2f, %.2f, %.2f, ...), we can calculate M = %.2f; 95%%CI = [%.2f, %.2f]",
-      second_samples[1], second_samples[2], second_samples[3], second_sim$Mean, second_sim$LowerCI, second_sim$UpperCI
-    )
-    third_description <- sprintf(
-      "3rd data collection: (%.2f, %.2f, %.2f, ...), we can calculate M = %.2f; 95%%CI = [%.2f, %.2f]",
-      last_samples[1], last_samples[2], last_samples[3], last_sim$Mean, last_sim$LowerCI, last_sim$UpperCI
-    )
-    
-    last_description <- sprintf(
-      "%sth data collection: (%.2f, %.2f, %.2f, ...), we can calculate M = %.2f; 95CI = [%.2f, %.2f]",
-      num_sim, last_samples[1], last_samples[2], last_samples[3], last_sim$Mean, last_sim$LowerCI, last_sim$UpperCI
-    )
-    
-    # Combine descriptions
-    if (num_sim == 1) {
-      paste("Collect data from population distribution:", first_description, sep = "\n")
-    } else if (num_sim == 2) {
-      paste("Collect data from population distribution:", first_description, second_description, sep = "\n")
-    } else if (num_sim == 3) {
-      paste("Collect data from population distribution:", first_description, second_description, third_description, sep = "\n")
-    } else {
-      paste("Collect data from population distribution:", first_description, second_description, "...", last_description, sep = "\n")
-    }
-  })
+  # output$simulationDetails <- renderText({
+  #   data <- sim_data()  # Use the existing sim_data reactive
+  #   num_sim <- nrow(data)  # Total number of simulations
+  #   
+  #   # Manually fetch data for first, second, and last simulation
+  #   first_sim <- data[1, ]
+  #   second_sim <- data[2, ]
+  #   last_sim <- data[num_sim, ]
+  #   
+  #   # Generate random samples for descriptive text
+  #   mu <- 3
+  #   first_samples <- sample(rnorm(input$sample_size, mean = mu, sd = 1), 3)
+  #   second_samples <- sample(rnorm(input$sample_size, mean = mu, sd = 1), 3)
+  #   last_samples <- sample(rnorm(input$sample_size, mean = mu, sd = 1), 3)
+  #   
+  #   # Create descriptions manually
+  #   first_description <- sprintf(
+  #     "1st data collection: (%.2f, %.2f, %.2f, ...), we can calculate M = %.2f; 95%%CI = [%.2f, %.2f]",
+  #     first_samples[1], first_samples[2], first_samples[3], first_sim$Mean, first_sim$LowerCI, first_sim$UpperCI
+  #   )
+  #   second_description <- sprintf(
+  #     "2nd data collection: (%.2f, %.2f, %.2f, ...), we can calculate M = %.2f; 95%%CI = [%.2f, %.2f]",
+  #     second_samples[1], second_samples[2], second_samples[3], second_sim$Mean, second_sim$LowerCI, second_sim$UpperCI
+  #   )
+  #   third_description <- sprintf(
+  #     "3rd data collection: (%.2f, %.2f, %.2f, ...), we can calculate M = %.2f; 95%%CI = [%.2f, %.2f]",
+  #     last_samples[1], last_samples[2], last_samples[3], last_sim$Mean, last_sim$LowerCI, last_sim$UpperCI
+  #   )
+  #   
+  #   last_description <- sprintf(
+  #     "%sth data collection: (%.2f, %.2f, %.2f, ...), we can calculate M = %.2f; 95CI = [%.2f, %.2f]",
+  #     num_sim, last_samples[1], last_samples[2], last_samples[3], last_sim$Mean, last_sim$LowerCI, last_sim$UpperCI
+  #   )
+  #   
+  #   # Combine descriptions
+  #   if (num_sim == 1) {
+  #     paste("Collect data from population distribution:", first_description, sep = "\n")
+  #   } else if (num_sim == 2) {
+  #     paste("Collect data from population distribution:", first_description, second_description, sep = "\n")
+  #   } else if (num_sim == 3) {
+  #     paste("Collect data from population distribution:", first_description, second_description, third_description, sep = "\n")
+  #   } else {
+  #     paste("Collect data from population distribution:", first_description, second_description, "...", last_description, sep = "\n")
+  #   }
+  # })
   
   
   
