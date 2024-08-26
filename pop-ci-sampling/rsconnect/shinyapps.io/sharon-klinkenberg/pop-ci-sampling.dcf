@@ -5,7 +5,7 @@ account: sharon-klinkenberg
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 12101879
-bundleId: 8683543
+bundleId: 9027175
 url: https://sharon-klinkenberg.shinyapps.io/pop-ci-sampling/
 version: 1
 asMultiple: FALSE
