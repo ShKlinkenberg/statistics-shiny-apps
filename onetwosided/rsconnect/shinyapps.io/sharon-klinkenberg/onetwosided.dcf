@@ -5,7 +5,7 @@ account: sharon-klinkenberg
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9510990
-bundleId: 7498363
+bundleId: 9097635
 url: https://sharon-klinkenberg.shinyapps.io/onetwosided/
 version: 1
 asMultiple: FALSE
