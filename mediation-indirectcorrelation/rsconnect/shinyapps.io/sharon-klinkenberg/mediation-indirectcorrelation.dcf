@@ -5,7 +5,7 @@ account: sharon-klinkenberg
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9495498
-bundleId: 7487494
+bundleId: 9196479
 url: https://sharon-klinkenberg.shinyapps.io/mediation-indirectcorrelation/
 version: 1
 asMultiple: FALSE
