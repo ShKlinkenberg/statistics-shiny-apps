@@ -5,7 +5,7 @@ account: sharon-klinkenberg
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9651471
-bundleId: 8457768
+bundleId: 9313708
 url: https://sharon-klinkenberg.shinyapps.io/grade-calculation/
 version: 1
 asMultiple: FALSE
