@@ -1,8 +1,8 @@
 server <- function(input, output) {
   observeEvent(input$calculate, {
-    MC_max <- 4
+    MC_max <- 5
     Open_max <- 14 - MC_max
-    MC_gues <- 0.85
+    MC_gues <- 1.2
     
     tentamen.cijfer <- ((input$MC_score_def - MC_gues) / (MC_max - MC_gues) * MC_max + input$Open_score_def) / (MC_max + Open_max) * 10
     
