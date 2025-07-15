@@ -26,17 +26,17 @@ shinyUI(
           class="table: table-condensed",
           tags$tr(
             tags$th(""),
-            tags$th("Clooney"),
-            tags$th("Jolie"),
-            tags$th("No endorser"),
+            tags$th("Autonomy"),
+            tags$th("Control"),
+            tags$th("Neutral"),
             tags$th("Total:")
           ),
           tags$tr(
             tags$td(
-              "Women"
+              "High Literacy"
             ),
             tags$td(
-              numericInput("woclooney",
+              numericInput("autonomyhigh",
                            label = "",
                            value = 6.5,
                            min = 0,
@@ -46,7 +46,7 @@ shinyUI(
               )            
             ),
             tags$td(
-              numericInput("wojolie",
+              numericInput("controlhigh",
                            label = "",
                            value = 8.5,
                            min = 0,
@@ -56,7 +56,7 @@ shinyUI(
               )            
             ),
             tags$td(
-              numericInput("wonobody",
+              numericInput("neutralhigh",
                            label = "",
                            value = 4.5,
                            min = 0,
@@ -66,15 +66,15 @@ shinyUI(
               )
             ),
             tags$td(
-              textOutput("totwomtext")  
+              textOutput("tothightext")  
             )
           ),
           tags$tr(
             tags$td(
-              "Men"
+              "Low Literacy"
             ),
             tags$td(
-              numericInput("menclooney",
+              numericInput("autonomylow",
                            label = "",
                            value = 5,
                            min = 0,
@@ -84,7 +84,7 @@ shinyUI(
               )
             ),
             tags$td(
-              numericInput("menjolie",
+              numericInput("controllow",
                            label = "",
                            value = 7,
                            min = 0,
@@ -94,7 +94,7 @@ shinyUI(
               )
             ),
             tags$td(
-              numericInput("mennobody",
+              numericInput("neutrallow",
                            label = "",
                            value = 3,
                            min = 0,
@@ -104,7 +104,7 @@ shinyUI(
               )             
             ),
             tags$td(
-              textOutput("totmentext") 
+              textOutput("totlowtext") 
             )
           ),
           tags$tr(
@@ -112,13 +112,13 @@ shinyUI(
               strong("Total:")
             ),
             tags$td(
-              textOutput("totclotext")
+              textOutput("totauttext")
             ),
             tags$td(
-              textOutput("totjoltext")
+              textOutput("totconttext")
             ),
             tags$td(
-              textOutput("totnobtext")
+              textOutput("totneuttext")
             ),
             tags$td(textOutput("tottext"))
           ) 
