@@ -1,42 +1,33 @@
 library(shiny)
 library(ggplot2)
 library(RColorBrewer)
+library(tidyverse)
 
 shinyServer(function(input, output) {
   #Load styling files for plots
   source("styling.R", local = TRUE)
+  source("simulate_vaccine.R", local = TRUE)
   
   #Reactive data frame for plotting the means
-  data <- reactive(data.frame(endorser = factor(c("Clooney","Jolie","No endorser","Clooney","Jolie","No endorser"),
-                                                levels = c("Clooney","Jolie","No endorser")),
-                              sex = as.factor(c(rep("male", 3), rep("female", 3))),
-                              willingness_av = c(input$menclooney,
-                                                 input$menjolie,
-                                                 input$mennobody,
-                                                 input$woclooney,
-                                                 input$wojolie,
-                                                 input$wonobody)))
+  sim_data <- reactive({
+    req(
+      input$autonomyhigh, input$autonomylow,
+      input$controlhigh, input$controllow,
+      input$neutralhigh, input$neutrallow
+    )
+    
+    simulate_data(AutonomyHigh_avg=input$autonomyhigh,AutonomyLow_avg=input$autonomylow,
+                  ControlHigh_avg=input$controlhigh,ControlLow_avg=input$controllow,
+                  NeutralHigh_avg=input$neutralhigh,NeutralLow_avg=input$neutrallow, 
+                  Autonomy_sd=1.66, Control_sd=1.66, Neutral_sd=1.66) 
+  })
+
   #Calculations for p value, f value and eta^2
-  stats <- reactive({df <- data()
-                    n <- 10 # size of each group
-                    # Generate within subgroup deviations with sd = 1.66
-                    dev <- qnorm(seq(from = 1/11, to = 10/11, length.out = 10), mean = 0, sd = 2)
-                    # Generate full dataset with current subgroup averages
-                    dfull <- data.frame(endorser = factor(c(rep("Clooney", times = 2*n),
-                                                            rep("Jolie", times = 2*n),
-                                                            rep("No endorser", times = 2*n)),
-                                                          levels = c("Clooney","Jolie","No endorser")),
-                                        sex = as.factor(rep(c(rep("male", n), rep("female", n)), 3)),
-                                        willingness = c(df$willingness_av[1] + dev,
-                                                        df$willingness_av[4] + dev,
-                                                        df$willingness_av[2] + dev,
-                                                        df$willingness_av[5] + dev,
-                                                        df$willingness_av[3] + dev,
-                                                        df$willingness_av[6] + dev)
-                                        )
+  stats <- reactive({df <- sim_data()
+                    
                     # Execute ANOVA (via lm)
-                    anova_out <- anova(lm(willingness ~ endorser * sex, data = dfull,
-                                 contrasts = list(endorser = contr.sum, sex = contr.sum)))
+                    anova_out <- anova(lm(vacc_acceptance ~ lang_cond * health_literacy, data = df,
+                                 contrasts = list(lang_cond = contr.sum, health_literacy = contr.sum)))
                     # Calculate eta2
                     ss_total <- sum(anova_out$`Sum Sq`)
                     # Return results as extended anova data.frame
@@ -47,17 +38,17 @@ shinyServer(function(input, output) {
   output$fvaltext <- renderUI({
       helpText(
         div(HTML(paste0(
-            "<b>Main effect of Endorser:</b> F(2, 54) = ",
+            "<b>Main effect of Language Condition:</b> F(2, 144) = ",
               rprint(stats()[1,4]), ", ",
               pprint(stats()[1,5]),
               ", eta<sup>2</sup> = ",
               rprint(stats()[1,6]),
-            "<br><b>Main effect of Sex:</b> F(1, 54) = ",
+            "<br><b>Main effect of Health Literacy:</b> F(1, 144) = ",
               rprint(stats()[2,4]), ", ",
               pprint(stats()[2,5]),
               ", eta<sup>2</sup> = ",
               rprint(stats()[2,6]),
-            "<br><b>Interaction effect:</b> F(2, 54) = ",
+            "<br><b>Interaction effect:</b> F(2, 144) = ",
               rprint(stats()[3,4]), ", ",
               pprint(stats()[3,5]),
               ", eta<sup>2</sup> = ",
@@ -71,27 +62,42 @@ shinyServer(function(input, output) {
   ##MAIN PLOT##
   output$mainplot <- renderPlot({
     #Load data
-    df <- data()
+    df <- sim_data()
    
      #Validation block to check if input within range of 0 and 10
     validate(
-      need(!(input$wonobody < 0 || input$wonobody > 10),
+      need(!(input$neutralhigh < 0 || input$neutralhigh > 10),
             "Please use values between 0 and 10"),
-      need(!(input$woclooney < 0 || input$woclooney > 10),
+      need(!(input$autonomyhigh < 0 || input$autonomyhigh > 10),
            "Please use values between 0 and 10"),
-      need(!(input$wojolie < 0 || input$wojolie > 10),
+      need(!(input$controlhigh < 0 || input$controlhigh > 10),
            "Please use values between 0 and 10"),
-      need(!(input$mennobody < 0 || input$mennobody > 10),
+      need(!(input$neutrallow < 0 || input$neutrallow > 10),
            "Please use values between 0 and 10"),
-      need(!(input$menclooney < 0 || input$menclooney > 10),
+      need(!(input$autonomylow < 0 || input$autonomylow > 10),
            "Please use values between 0 and 10"),
-      need(!(input$menjolie < 0 || input$menjolie > 10),
+      need(!(input$controllow < 0 || input$controllow > 10),
            "Please use values between 0 and 10")
       )
-
+    
+    df_av=df %>%
+      group_by(lang_cond,health_literacy) %>%
+      summarise(
+        accept_av = mean(vacc_acceptance),
+        se = sd(vacc_acceptance) / sqrt(n()),
+        lower = accept_av - qt(0.975, df = n()-1) * se,
+        upper = accept_av + qt(0.975, df = n()-1) * se,
+        .groups = "drop"
+      ) %>%
+      mutate(
+        const = "line_group",  # for line connection
+        lang_cond=factor(lang_cond, levels=c('Autonomy','Neutral','Control'))
+      ) %>% arrange(health_literacy,lang_cond)
+    
+    
     #Dataframe containing vertical arrow positions 
-    dfarrows <- data.frame(y = df$willingness_av[1:3],
-                           yend  = df$willingness_av[4:6])
+    dfarrows <- data.frame(y = df_av$accept_av[1:3],
+                           yend  = df_av$accept_av[4:6])
     #Add space at the right side.
     dfarrows$y <- ifelse(dfarrows$y > dfarrows$yend,
                          dfarrows$y - 0.2,
@@ -101,19 +107,19 @@ shinyServer(function(input, output) {
                          dfarrows$yend - 0.2)
 
     #Plot output
-    ggplot(df, aes(x = endorser,
-                  y = willingness_av,
-                  group = sex,
-                  colour = sex)) +
+    ggplot(df_av, aes(x = lang_cond,
+                  y = accept_av,
+                  group = health_literacy,
+                  colour = health_literacy)) +
       #Plot the means by endorsers
-      geom_point(aes(shape = sex),
+      geom_point(aes(shape = health_literacy),
                  size = 3) + 
       #Connect the means with lines
-      geom_line(aes(linetype = sex),
+      geom_line(aes(linetype = health_literacy),
                 size = .7) + 
       #Add vertical arcs between subgroup means
-      geom_segment(x = 1,
-                   xend = 1,
+      geom_segment(x = 0.8,
+                   xend = 0.8,
                    y = dfarrows$y[1],
                    yend = dfarrows$yend[1],
                    linetype = "solid",
@@ -121,8 +127,8 @@ shinyServer(function(input, output) {
                    arrow = arrow(length = unit(2,"mm"),
                                  ends = "last",
                                  type = "closed")) + 
-      geom_segment(x = 2,
-                   xend = 2,
+      geom_segment(x = 1.8,
+                   xend = 1.8,
                    y = dfarrows$y[2],
                    yend = dfarrows$yend[2],
                    linetype = "solid",
@@ -130,8 +136,8 @@ shinyServer(function(input, output) {
                    arrow = arrow(length = unit(2,"mm"),
                                  ends = "last",
                                  type = "closed")) + 
-      geom_segment(x = 3,
-                   xend = 3,
+      geom_segment(x = 3.2,
+                   xend = 3.2,
                    y = dfarrows$y[3],
                    yend = dfarrows$yend[3],
                    linetype = "solid",
@@ -139,6 +145,19 @@ shinyServer(function(input, output) {
                    arrow = arrow(length = unit(2,"mm"),
                                  ends = "last",
                                  type = "closed")) + 
+      # Horizontal lines for arrows
+      geom_segment(aes(x = 0.7, xend = 1.3, y = accept_av[[1]], yend = accept_av[[1]]),
+                   linetype = "dashed", color = brewercolors["Green"]) +
+      geom_segment(aes(x = 0.7, xend = 1.3, y = accept_av[[4]], yend = accept_av[[4]]),
+                   linetype = "dashed", color = brewercolors["Green"]) +
+      geom_segment(aes(x = 1.7, xend = 2.3, y = accept_av[[2]], yend = accept_av[[2]]),
+                   linetype = "dashed", color = brewercolors["Green"]) +
+      geom_segment(aes(x = 1.7, xend = 2.3, y = accept_av[[5]], yend = accept_av[[5]]),
+                   linetype = "dashed", color = brewercolors["Green"]) +
+      geom_segment(aes(x = 2.7, xend = 3.3, y = accept_av[[3]], yend = accept_av[[3]]),
+                   linetype = "dashed", color = brewercolors["Green"]) +
+      geom_segment(aes(x = 2.7, xend = 3.3, y = accept_av[[6]], yend = accept_av[[6]]),
+                   linetype = "dashed", color = brewercolors["Green"]) +
       #Set limits of plot
       scale_y_continuous(limits = c(0,10),
                          breaks = seq(1,10)) +
@@ -146,68 +165,69 @@ shinyServer(function(input, output) {
       scale_color_manual(values = c(unname(brewercolors["Red"]),
                                     unname(brewercolors["Blue"]))) + 
       #Labels and title
-      ylab("Willingness") + 
-      xlab("Endorser") + 
-      ggtitle("Average willingness by endorser") + 
+      labs(x='Language Condition', y='Average Vaccine Acceptance',shape = "Health Literacy", color = "Health Literacy", linetype = "Health Literacy") + 
+      ggtitle("Average vaccine acceptance by condition") + 
       #Theme settings
       theme_general() + 
-      theme(legend.position = "bottom", text = element_text(size = 16))
+      theme(legend.position = "bottom", text = element_text(size = 16))+
+      # Error bars
+      geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1) 
   })
   
-  #Output for total of Nobody
-  output$totnobtext <- renderText(
+  #Output for total of Neutral
+  output$totneuttext <- renderText(
     as.character(
       round(
         mean(
-          c(input$wonobody, input$mennobody)
+          c(input$neutralhigh, input$neutrallow)
         ),
         digits = 2
       )
     )
   )
-  #Output for total clooney
-  output$totclotext <- renderText(
+  #Output for total autonomy
+  output$totauttext <- renderText(
     as.character(
       round(
         mean(
-          c(input$woclooney, input$menclooney)
+          c(input$autonomyhigh, input$autonomylow)
         ),
         digits = 2
       )
     )
   )
-  #Output for total jolie
-  output$totjoltext <- renderText(
+  #Output for total control
+  output$totconttext <- renderText(
     as.character(
       round(
         mean(
           c(
-            input$wojolie, input$menjolie)
+            input$controlhigh, input$controllow)
         ),
         digits = 2
       )
     )
   )
-  #Output for total women
-  output$totwomtext <- renderText(
+  #Output for total high literacy
+  output$tothightext <- renderText(
     as.character(
       round(
-        mean(c(input$wonobody,
-               input$woclooney,
-               input$wojolie)
+        mean(c(input$neutralhigh,
+               input$autonomyhigh,
+               input$controlhigh)
         ),
         digits = 2
       )
     )
   )
-  #Output for total men
-  output$totmentext <- renderText(
+  #Output for total low literacy
+  output$totlowtext <- renderText(
     as.character(
       round(
         mean(
-          c(input$mennobody,
-            input$menclooney,
-            input$menjolie)
+          c(input$neutrallow,
+            input$autonomylow,
+            input$controllow)
         ),
         digits = 2
         
@@ -219,12 +239,12 @@ shinyServer(function(input, output) {
     as.character(
       round(
         mean(
-          c(input$mennobody,
-            input$menclooney,
-            input$menjolie,
-            input$wonobody,
-            input$woclooney,
-            input$wojolie)
+          c(input$neutrallow,
+            input$autonomylow,
+            input$controllow,
+            input$neutralhigh,
+            input$autonomyhigh,
+            input$controlhigh)
         ),
         digits = 2
       )
