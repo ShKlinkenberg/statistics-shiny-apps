@@ -41,8 +41,8 @@ shinyServer(function(input, output) {
             3 + rnorm(1, 0.4, sd = 0.6),
             3 + rnorm(1, 0.4, sd = 0.6)),
           x = spacemaker(3, n, .15),
-          cat1 = rep(c("Clooney","Jolie","No Endorser"),each = n),
-          cat2 = rep(c("Men","Women"),each = 2))
+          cat1 = rep(c("Autonomy","Control","Neutral"),each = n),
+          cat2 = rep(c("Low","High"),each = 2))
       }
       
       else {
@@ -62,21 +62,21 @@ shinyServer(function(input, output) {
         df <-
           data.frame(
             y = c(
-              mCloon + rnorm(1, mMen, sd = 0.6),
-              mCloon + rnorm(1, mMen, sd = 0.6),
-              mCloon + rnorm(1, mWom, sd = 0.6),
-              mCloon + rnorm(1, mWom, sd = 0.6),
-              mJolie + rnorm(1, mMen, sd = 0.6),
-              mJolie + rnorm(1, mMen, sd = 0.6),
-              mJolie + rnorm(1, mWom, sd = 0.6),
-              mJolie + rnorm(1, mWom, sd = 0.6),
-              mNoEnd + rnorm(1, mMen, sd = 0.6),
-              mNoEnd + rnorm(1, mMen, sd = 0.6),
-              mNoEnd + rnorm(1, mWom, sd = 0.6),
-              mNoEnd + rnorm(1, mWom, sd = 0.6)),
+              mAutonomy + rnorm(1, mLow, sd = 0.6),
+              mAutonomy + rnorm(1, mLow, sd = 0.6),
+              mAutonomy + rnorm(1, mHigh, sd = 0.6),
+              mAutonomy + rnorm(1, mHigh, sd = 0.6),
+              mControl + rnorm(1, mLow, sd = 0.6),
+              mControl + rnorm(1, mLow, sd = 0.6),
+              mControl + rnorm(1, mHigh, sd = 0.6),
+              mControl + rnorm(1, mHigh, sd = 0.6),
+              mNeutral + rnorm(1, mLow, sd = 0.6),
+              mNeutral + rnorm(1, mLow, sd = 0.6),
+              mNeutral + rnorm(1, mHigh, sd = 0.6),
+              mNeutral + rnorm(1, mHigh, sd = 0.6)),
             x = spacemaker(3, n, .15),
-            cat1 = rep(c("Clooney","Jolie","No Endorser"),each = n),
-            cat2 = rep(c("Men","Women"),each = 2))
+            cat1 = rep(c("Autonomy","Control","Neutral"),each = n),
+            cat2 = rep(c("Low","High"),each = 2))
       }  
       return(df)
     })
@@ -96,24 +96,24 @@ shinyServer(function(input, output) {
                 size = 1.3) +
       geom_point(size = 5, aes(fill = cat1, shape = cat2)) +
       scale_colour_manual(values = 
-                            c("Clooney" = unname(brewercolors["Orange"]),
-                              "Jolie" = unname(brewercolors["Blue"]),
-                              "No Endorser" = unname(brewercolors["Green"]))) +
+                            c("Autonomy" = unname(brewercolors["Orange"]),
+                              "Control" = unname(brewercolors["Blue"]),
+                              "Neutral" = unname(brewercolors["Green"]))) +
       scale_fill_manual(values = 
-                          c("Clooney" = unname(brewercolors["Orange"]),
-                            "Jolie" = unname(brewercolors["Blue"]),
-                            "No Endorser" = unname(brewercolors["Green"]))) +
-      scale_shape_manual(values = c("Men" = 21, "Women" = 22)) +
+                          c("Autonomy" = unname(brewercolors["Orange"]),
+                            "Control" = unname(brewercolors["Blue"]),
+                            "Neutral" = unname(brewercolors["Green"]))) +
+      scale_shape_manual(values = c("Low" = 21, "High" = 22)) +
       scale_linetype_manual(values = c("Grand Mean" = "solid")) +
       guides(colour = "none", # guide_legend(title = "Means:"),
              linetype = guide_legend(title = "Means:"),
              fill = "none",
-             shape = guide_legend(title = "Sex:")) +
+             shape = guide_legend(title = "Health Literacy:")) +
       scale_x_continuous(breaks = 1:3,
-                         labels = c("Clooney", "Jolie", "No Endorser")) +
+                         labels = c("Autonomy", "Control", "Neutral")) +
       coord_cartesian(ylim = c(min(df$y) - 1, max(df$y) + 1)) +
       xlab("") +
-      ylab("Willingness") +
+      ylab("Vaccine Acceptance") +
       theme_general() +
       theme(legend.position = "top")
     
@@ -133,24 +133,24 @@ shinyServer(function(input, output) {
       
       p <-
         p +
-        geom_segment( x    = min(subset(df, cat1 == "Clooney")$x - .09),
-                      xend = max(subset(df, cat1 == "Clooney")$x + .09),
-                      y    = mean(subset(df, cat1 == "Clooney")$y),
-                      yend = mean(subset(df, cat1 == "Clooney")$y),
+        geom_segment( x    = min(subset(df, cat1 == "Autonomy")$x - .09),
+                      xend = max(subset(df, cat1 == "Autonomy")$x + .09),
+                      y    = mean(subset(df, cat1 == "Autonomy")$y),
+                      yend = mean(subset(df, cat1 == "Autonomy")$y),
                       size = 1.2,
-                      aes(colour = "Clooney",linetype = "Grand Mean")) +
-        geom_segment( x    = min(subset(df, cat1 == "Jolie")$x - .09),
-                      xend = max(subset(df, cat1 == "Jolie")$x + .09),
-                      y    = mean(subset(df, cat1 == "Jolie")$y),
-                      yend = mean(subset(df, cat1 == "Jolie")$y),
+                      aes(colour = "Autonomy",linetype = "Grand Mean")) +
+        geom_segment( x    = min(subset(df, cat1 == "Control")$x - .09),
+                      xend = max(subset(df, cat1 == "Control")$x + .09),
+                      y    = mean(subset(df, cat1 == "Control")$y),
+                      yend = mean(subset(df, cat1 == "Control")$y),
                       size = 1.2,
-                      aes(colour = "Jolie",linetype = "Grand Mean")) +
-        geom_segment( x    = min(subset(df, cat1 == "No Endorser")$x - .09),
-                      xend = max(subset(df, cat1 == "No Endorser")$x + .09),
-                      y    = mean(subset(df, cat1 == "No Endorser")$y),
-                      yend = mean(subset(df, cat1 == "No Endorser")$y),
+                      aes(colour = "Control",linetype = "Grand Mean")) +
+        geom_segment( x    = min(subset(df, cat1 == "Neutral")$x - .09),
+                      xend = max(subset(df, cat1 == "Neutral")$x + .09),
+                      y    = mean(subset(df, cat1 == "Neutral")$y),
+                      yend = mean(subset(df, cat1 == "Neutral")$y),
                       size = 1.2,
-                      aes(colour = "No Endorser",linetype = "Grand Mean"))  +
+                      aes(colour = "Neutral",linetype = "Grand Mean"))  +
         geom_segment( x        = dfarrows$x.grpgr,
                       xend     = dfarrows$xend.grpgr,
                       y        = dfarrows$y.grpgr,
@@ -165,13 +165,10 @@ shinyServer(function(input, output) {
                linetype = guide_legend(title = "Means:"),
                fill = "none",
                shape = "none") + 
-        scale_linetype_manual( values = c("Grand Mean"  = "solid")) #,
-        #                                   # "Clooney"     = "solid",
-        #                                   # "Jolie"       = "solid",
-        #                                   # "No Endorser" = "solid")) 
+        scale_linetype_manual( values = c("Grand Mean"  = "solid"))  
     }
     
-    #Plot With Only Sex Selected ----
+    #Plot With Only Health Literacy Selected ----
     
     if("2" %in% input$groupselect & length(input$groupselect) == 1)
     {
@@ -190,17 +187,17 @@ shinyServer(function(input, output) {
         p +
         geom_segment( x    = min(df$x),
                       xend = max(df$x),
-                      y    = mean(subset(df, cat2 == "Men")$y),
-                      yend = mean(subset(df, cat2 == "Men")$y),
-                      aes(linetype = "Men")) +
+                      y    = mean(subset(df, cat2 == "Low")$y),
+                      yend = mean(subset(df, cat2 == "Low")$y),
+                      aes(linetype = "Low")) +
         geom_segment( x    = min(df$x),
                       xend = max(df$x),
-                      y    = mean(subset(df, cat2 == "Women")$y),
-                      yend = mean(subset(df, cat2 == "Women")$y),
-                      aes(linetype = "Women")) +
+                      y    = mean(subset(df, cat2 == "High")$y),
+                      yend = mean(subset(df, cat2 == "High")$y),
+                      aes(linetype = "High")) +
         scale_linetype_manual(values = c("Grand Mean" = "solid",
-                                         "Men"        = "dotted",
-                                         "Women"      = "dashed")) +
+                                         "Low"        = "dotted",
+                                         "High"      = "dashed")) +
         guides( colour       = "none",
                 linetype     = guide_legend(title = "Means:",
                                             order = 2,
@@ -211,7 +208,7 @@ shinyServer(function(input, output) {
                                                 c("black", "black", "black"),
                                               size = 0.5)),
                 fill         = "none",
-                shape        = guide_legend(title = "Sex:", order = 1)) +
+                shape        = guide_legend(title = "Health Literacy:", order = 1)) +
         geom_segment( x        = dfarrows$x.grpgr,
                       xend     = dfarrows$xend.grpgr,
                       y        = dfarrows$y.grpgr,
@@ -223,7 +220,7 @@ shinyServer(function(input, output) {
                                         type   = "closed"))
     }
     
-    # Plot With Endorser And Sex Selected ----
+    # Plot With Language Condition and Health Literacy Selected ----
     
     if(length(input$groupselect) == 2)
     {
@@ -260,7 +257,7 @@ shinyServer(function(input, output) {
         guides(colour = guide_legend(title = "Means:"),
                linetype = guide_legend(title = ""),
                fill = "none",
-               shape = "none") + # guide_legend(title = "Sex:")) +
+               shape = "none") + 
         geom_segment(x = dfarrows$x.grpgr,
                      xend = dfarrows$xend.grpgr,
                      y = dfarrows$y.grpgr,

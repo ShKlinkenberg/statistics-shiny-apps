@@ -13,7 +13,7 @@ shinyUI(
         checkboxGroupInput(
           "groupselect",
           label = "Display means for",
-          choices = c("Endorser" = 1, "Sex" = 2),
+          choices = c("Language Condition" = 1, "Health Literacy" = 2),
           inline = TRUE
         ),
         actionButton("newsampbut",

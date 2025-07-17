@@ -28,19 +28,19 @@ shinyServer(function(input, output) {
     df <- isolate(
             data.frame(
               y = c(
-                    input$clooneynumin - 0.7, input$clooneynumin + 1.3, 
-                    input$clooneynumin - 1.1, input$clooneynumin + 0.5,
-                    input$jolienumin + 0.8, input$jolienumin + 0.6, 
-                    input$jolienumin - 1.2, input$jolienumin - 0.2,
-                    input$endorsernumin - 0.9, input$endorsernumin + 2.1, 
-                    input$endorsernumin - 0.5, input$endorsernumin - 0.7
+                    input$autonomynumin - 0.7, input$autonomynumin + 1.3, 
+                    input$autonomynumin - 1.1, input$autonomynumin + 0.5,
+                    input$controlnumin + 0.8, input$controlnumin + 0.6, 
+                    input$controlnumin - 1.2, input$controlnumin - 0.2,
+                    input$neutralnumin - 0.9, input$neutralnumin + 2.1, 
+                    input$neutralnumin - 0.5, input$neutralnumin - 0.7
                     ),
                     x = spacemaker(3,n,.15),
                     cat = rep(
                             c(
-                              "Clooney",
-                              "Jolie",
-                              "NoEnd"
+                              "Autonomy",
+                              "Control",
+                              "Neutral"
                               ),
                             each = n
                             )
@@ -74,27 +74,27 @@ shinyServer(function(input, output) {
       geom_line(y = mean(df$y),
                 aes(linetype = "Grand Mean"),
                 size = 1.3) + 
-      #Mean of group Clooney
-      geom_segment(x = min(subset(df, cat == "Clooney")$x - .09),
-                   xend = max(subset(df, cat == "Clooney")$x + .09),
-                   y = mean(subset(df, cat == "Clooney")$y),
-                   yend = mean(subset(df, cat == "Clooney")$y),
+      #Mean of group Autonomy
+      geom_segment(x = min(subset(df, cat == "Autonomy")$x - .09),
+                   xend = max(subset(df, cat == "Autonomy")$x + .09),
+                   y = mean(subset(df, cat == "Autonomy")$y),
+                   yend = mean(subset(df, cat == "Autonomy")$y),
                    size = 1.2,
-                   aes(colour = "Clooney")) + 
-      #Mean of Group Jolie
-      geom_segment(x = min(subset(df, cat == "Jolie")$x - .09),
-                   xend = max(subset(df, cat == "Jolie")$x + .09),
-                   y = mean(subset(df, cat == "Jolie")$y),
-                   yend = mean(subset(df, cat == "Jolie")$y),
+                   aes(colour = "Autonomy")) + 
+      #Mean of Group Control
+      geom_segment(x = min(subset(df, cat == "Control")$x - .09),
+                   xend = max(subset(df, cat == "Control")$x + .09),
+                   y = mean(subset(df, cat == "Control")$y),
+                   yend = mean(subset(df, cat == "Control")$y),
                    size = 1.2,
-                   aes(colour = "Jolie")) + 
-      #Mean of Group No Endorser
-      geom_segment(x = min(subset(df, cat == "NoEnd")$x - .09),
-                   xend = max(subset(df, cat == "NoEnd")$x + .09),
-                   y = mean(subset(df, cat == "NoEnd")$y),
-                   yend = mean(subset(df, cat == "NoEnd")$y),
+                   aes(colour = "Control")) + 
+      #Mean of Group Neutral
+      geom_segment(x = min(subset(df, cat == "Neutral")$x - .09),
+                   xend = max(subset(df, cat == "Neutral")$x + .09),
+                   y = mean(subset(df, cat == "Neutral")$y),
+                   yend = mean(subset(df, cat == "Neutral")$y),
                    size = 1.2,
-                   aes(colour = "No Endorser")) +  
+                   aes(colour = "Neutral")) +  
       #Arrows from grand mean to observation
       geom_segment(x = dfarrows$x.tot,
                    xend = dfarrows$xend.tot,
@@ -130,16 +130,16 @@ shinyServer(function(input, output) {
                  aes(fill = cat)) +
       #Manual color definitions
       scale_colour_manual(values = c(
-                                     "Clooney" = unname(brewercolors["Orange"]),
-                                     "Jolie" = unname(brewercolors["Blue"]),
-                                     "No Endorser" = unname(brewercolors["Green"])
+                                     "Autonomy" = unname(brewercolors["Orange"]),
+                                     "Control" = unname(brewercolors["Blue"]),
+                                     "Neutral" = unname(brewercolors["Green"])
                                       )
                           ) + 
       #Manual fill definitions
       scale_fill_manual(values = c(
-                                  "Clooney" = unname(brewercolors["Orange"]),
-                                  "Jolie" = unname(brewercolors["Blue"]),
-                                  "NoEnd" = unname(brewercolors["Green"])
+                                  "Autonomy" = unname(brewercolors["Orange"]),
+                                  "Control" = unname(brewercolors["Blue"]),
+                                  "Neutral" = unname(brewercolors["Green"])
                                   )
                          ) + 
       #Eta squared text label
@@ -152,8 +152,8 @@ shinyServer(function(input, output) {
              linetype = guide_legend(title = "Grand Mean",label = FALSE),
              fill = FALSE) + 
       #X label definitions
-      scale_x_continuous(name = "", breaks = 1:3,labels = c("Clooney", "Jolie", "No Endorser")) +
-      scale_y_continuous(name = "Willingness", limits = c(1, 10), breaks = 1:10) +
+      scale_x_continuous(name = "", breaks = 1:3,labels = c("Autonomy", "Control", "Neutral")) +
+      scale_y_continuous(name = "Vaccine Acceptance", limits = c(1, 10), breaks = 1:10) +
       theme_general() + 
       theme(legend.position = "top") 
       
