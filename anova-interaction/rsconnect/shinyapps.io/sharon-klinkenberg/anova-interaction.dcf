@@ -5,7 +5,7 @@ account: sharon-klinkenberg
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9492780
-bundleId: 7485495
+bundleId: 10757184
 url: https://sharon-klinkenberg.shinyapps.io/anova-interaction/
 version: 1
 asMultiple: FALSE
