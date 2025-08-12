@@ -5,7 +5,7 @@ account: sharon-klinkenberg
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9492813
-bundleId: 10757230
+bundleId: 10762122
 url: https://sharon-klinkenberg.shinyapps.io/anova-twoway/
 version: 1
 asMultiple: FALSE
