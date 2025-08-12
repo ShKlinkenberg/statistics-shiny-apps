@@ -49,15 +49,15 @@ shinyServer(function(input, output) {
         
         # Define the means for each category.
         
-        mCloon <- runif(1, min = 3, max = 7)
-        mJolie <- runif(1, min = 3, max = 7)
-        mNoEnd <- runif(1, min = 3, max = 7)
-        mMen <-   runif(1, min = -1, max = 1)
-        mWom <-   runif(1, min = -1, max = 1)
+        mAutonomy <- runif(1, min = 3, max = 7)
+        mControl <- runif(1, min = 3, max = 7)
+        mNeutral <- runif(1, min = 3, max = 7)
+        mLow <-   runif(1, min = -1, max = 1)
+        mHigh <-   runif(1, min = -1, max = 1)
         
         # Generate the data frame needed for plotting the positions of each dot
-        # variable y is the mean of each endorser category mixed with a random 
-        # bit for the sex category with sd of 1. 
+        # variable y is the mean of each language category mixed with a random 
+        # bit for the health literacy category with sd of 1. 
         
         df <-
           data.frame(
@@ -117,7 +117,7 @@ shinyServer(function(input, output) {
       theme_general() +
       theme(legend.position = "top")
     
-    # Plot With only Endorser ----
+    # Plot With only Language Condition ----
     
     if ("1" %in% input$groupselect & length(input$groupselect) == 1)
     {
@@ -252,8 +252,8 @@ shinyServer(function(input, output) {
                          linetype =  cat2),
                      size = 1) +
         scale_linetype_manual(values = c("Grand Mean" = "solid",
-                                         "Men" = "dotted",
-                                         "Women" = "dashed")) +
+                                         "Low" = "dotted",
+                                         "High" = "dashed")) +
         guides(colour = guide_legend(title = "Means:"),
                linetype = guide_legend(title = ""),
                fill = "none",
